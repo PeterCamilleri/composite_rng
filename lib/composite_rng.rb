@@ -15,15 +15,17 @@ class CompositeRng
   #An access point for random numbers.
   #<br>Parameters
   #* max - the range of the numbers to be created.
+  #<br>Returns
+  #* a random value generated according to the max parameter.
   def rand(max=0)
-    churn(max).rand(max)
+    churn.rand(max)
   end
 
   #Stir the soup!
-  #<br>Parameters
-  #* max - the range of the numbers to be discarded.
-  def churn(max=256)
-    (1 + @parent.rand(@churn)).times {@child.rand(max)}
+  #<br>Returns
+  #* a churned random number generator.
+  def churn
+    (1 + @parent.rand(@churn)).times {@child.rand(256)}
     @child
   end
 
