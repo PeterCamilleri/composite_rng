@@ -30,13 +30,13 @@ task :reek do |t|
   `reek --no-color lib > reek.txt`
 end
 
-desc "Fire up an IRB session with fOOrth preloaded."
+desc "Fire up an IRB session with composite_rng preloaded."
 task :console do
   require 'irb'
   require 'irb/completion'
 
   require './lib/composite_rng'
-  puts "Starting an IRB console for CompositeRng."
+  puts "Starting an IRB console for composite_rng."
 
   ARGV.clear
   IRB.start
