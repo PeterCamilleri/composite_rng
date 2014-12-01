@@ -3,6 +3,13 @@ require 'rake/testtask'
 require 'rdoc/task'
 require "bundler/gem_tasks"
 
+#Run the fOOrth unit test suite.
+Rake::TestTask.new do |t|
+  #List out all the test files.
+  t.test_files = FileList['tests/**/*.rb']
+  t.verbose = false
+end
+
 #Generate internal documentation with rdoc.
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = "rdoc"

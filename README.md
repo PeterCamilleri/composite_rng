@@ -14,9 +14,7 @@ The generators used most comply to the following duck characteristics:
 
 That's all! The following shows how this could work:
 
-    require 'random'  #Get the built in Mersenne Twister MT19937 PRNG
-    # ...
-    parent = Random.new
+    parent = Random.new #Get the built in Mersenne Twister MT19937 PRNG
     child  = Random.new
     composite = CompositeRng.new(parent, child)
     # ...
@@ -25,8 +23,6 @@ That's all! The following shows how this could work:
 
 It is also possible to use the default PRNG as follows:
 
-    require 'random'  #Get the built in Mersenne Twister MT19937 PRNG
-    # ...
     parent = Object.new
     child  = Random.new
     composite = CompositeRng.new(parent, child)
