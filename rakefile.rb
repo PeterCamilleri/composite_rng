@@ -32,14 +32,7 @@ end
 
 desc "Fire up an IRB session with composite_rng preloaded."
 task :console do
-  require 'irb'
-  require 'irb/completion'
-
-  require './lib/composite_rng'
-  puts "Starting an IRB console for composite_rng."
-
-  ARGV.clear
-  IRB.start
+  system "ruby irbt.rb local"
 end
 
 desc "What version of the composite_rng is this?"

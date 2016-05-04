@@ -1,4 +1,4 @@
-require "composite_rng/version"
+require_relative "composite_rng/version"
 
 #A class of random number generators that work by nesting other PRNGs.
 class CompositeRng
