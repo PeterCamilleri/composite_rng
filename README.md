@@ -59,8 +59,17 @@ these other methods is provided by using the churn method. The churn method
 returns the child PRNG after it has received a suitable period of instruction
 from the parent PRNG. An example, accessing the bytes method of the Random
 class follows:
-
-    crazy_string = composite.churn.bytes(22) # Get a string of 22 random chars.
+```ruby
+# Get a string of 22 random chars.
+crazy_string = composite.churn.bytes(22)
+```
+While this code seems to work, it really is weak tea. The issue is that the
+education process is only carried out once. The following code does a much
+more thorough job:
+```ruby
+# Get a string of 22 random chars.
+crazy_string = 22.times.inject("") { |s| s << composite.churn.bytes(1) }
+```
 
 ## Installation
 
@@ -75,6 +84,8 @@ And then execute:
 Or install it yourself as:
 
     $ gem install composite_rng
+
+The composite_rng gem itself is found at: ( https://rubygems.org/gems/composite_rng )
 
 ## Contributing
 
