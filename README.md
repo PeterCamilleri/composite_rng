@@ -87,6 +87,8 @@ Or install it yourself as:
 
 The composite_rng gem itself is found at: ( https://rubygems.org/gems/composite_rng )
 
+The fibonacci_rng code lives at: ( https://github.com/PeterCamilleri/fibonacci_rng )
+
 ## Contributing
 
 #### Plan A
