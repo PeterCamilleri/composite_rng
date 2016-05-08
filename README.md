@@ -21,11 +21,12 @@ composite = CompositeRng.new(parent, child, 42)
 dice_roll = 1 + composite.rand(6)
 # ...
 ```
-The constructor takes three arguements:
+The constructor takes three arguments:
 * The parent PRNG that is used to "educate" the child.
 * The child PRNG that is the actual generator of data.
-* The churn factor that controls how much tutoring the child is to receive.
-This optional parameter defaults to 16.
+* The churn_limit factor that controls how much tutoring the child can
+receive. This optional parameter defaults to 16. This value may be read back
+with the churn_limit property.
 
 It is also possible to use the default PRNG as follows:
 ```ruby
