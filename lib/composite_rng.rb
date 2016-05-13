@@ -3,6 +3,12 @@ require_relative "composite_rng/version"
 #A class of random number generators that work by nesting other PRNGs.
 class CompositeRng
 
+  #The limits on the churn limit.
+  CHURNS = 2..256
+
+  #The limits on the init.
+  INITS = 0..256
+
   #The current upper limit on churn
   attr_reader :churn_limit
 
@@ -11,8 +17,21 @@ class CompositeRng
   #* parent - the starting PRNG
   #* child - the progeny PRNG
   #* churn_limit - the max amount of churning done.
-  def initialize(parent, child, churn_limit=16)
+  #* init = the number of initial churn steps.
+  def initialize(parent, child, churn_limit=16, init=0)
     @parent, @child, @churn_limit = parent, child, churn_limit
+
+    #Validate the churn_limit
+    unless CHURNS === @churn_limit
+      fail "Invalid churn limit #{@churn_limit}. Allowed values are #{CHURNS}"
+    end
+
+    #Validate the init
+    unless INITS === init
+      fail "Invalid init value #{init}. Allowed values are #{INITS}"
+    end
+
+    init.times { churn }
   end
 
   #An access point for random numbers.

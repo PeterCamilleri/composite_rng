@@ -11,6 +11,14 @@ class CompositeRngTester < Minitest::Test
   #Track mini-test progress.
   include MinitestVisible
 
+  def test_that_it_checks_parms
+    assert_raises { CompositeRng.new(Random.new, Random.new,  -1, 0) }
+    assert_raises { CompositeRng.new(Random.new, Random.new, 300, 0) }
+
+    assert_raises { CompositeRng.new(Random.new, Random.new, 2,  -1) }
+    assert_raises { CompositeRng.new(Random.new, Random.new, 2, 300) }
+  end
+
   def test_that_it_creates_dice_rolls
     prng = CompositeRng.new(Random.new, Random.new)
 

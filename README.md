@@ -2,31 +2,36 @@
 
 The composite (psuedo) random number generator is a container for two other
 (psuedo) random number generators. By working together, these create higher
-quality random number streams than either could by itself.
+quality pseudo-random number streams than either could by itself.
 
-The two generators do NOT need to be the same type. While not a good idea,
-they may even be the same instance, or the same type with the same seed, but
-this negates the advantage of compositing them.
+The two generators do not need to be the same type. In fact it helps to reduce
+any possible correlation between the parent and the child if they are
+completely different sorts of generators. It is really not a good idea for them
+to be either the same instance, or the same type with the same seed, because
+this negates the advantage of compositing generators.
 
 The generators used must comply to the following duck characteristics:
 
     rand(max) - This method must compute a random integer from 0...max
 
-That's all! The following shows how this could work:
+The constructor takes four arguments:
+* The parent PRNG that is used to "educate" the child.
+* The child PRNG that is the actual generator of data.
+* The optional churn_limit factor that controls how much tutoring the child
+can receive. This optional parameter defaults to 16. This value may be read
+back with the churn_limit property. Valid values are 2..256
+* The optional init factor that controls the amount of initial tutoring the
+child receives initially. This defaults to 0 for none. Valid values are 0..256
+
+The following shows how this could work:
 ```ruby
 parent = Random.new #Get the built in Mersenne Twister MT19937 PRNG
 child  = Random.new
-composite = CompositeRng.new(parent, child, 42)
+composite = CompositeRng.new(parent, child, 42, 11)
 # ...
 dice_roll = 1 + composite.rand(6)
 # ...
 ```
-The constructor takes three arguments:
-* The parent PRNG that is used to "educate" the child.
-* The child PRNG that is the actual generator of data.
-* The churn_limit factor that controls how much tutoring the child can
-receive. This optional parameter defaults to 16. This value may be read back
-with the churn_limit property.
 
 It is also possible to use the default PRNG as follows:
 ```ruby
