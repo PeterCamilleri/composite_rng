@@ -61,19 +61,6 @@ dice_roll = 1 + composite.rand(6)
 # ...
 ```
 
-It is also possible to use the default PRNG as follows:
-```ruby
-parent = Object.new
-child  = Random.new
-composite = CompositeRng.new(parent, child)
-# ...
-dice_roll = 1 + composite.rand(6)
-# ...
-```
-This is because the default PRNG exists as methods of Object. Note that (as
-far as I can tell) only one instance of that PRNG exists, so it should only
-be used as parent or child but never both!.
-
 The composite generator also works with custom generators that support rand(n).
 For example my own Fibonacci generator:
 
