@@ -1,8 +1,9 @@
 # CompositeRng
 
 The composite (psuedo) random number generator is a container for two other
-(psuedo) random number generators. By working together, these create higher
-quality pseudo-random number streams than either could create by itself.
+(psuedo) random number generators. By working together, these generators
+create higher quality pseudo-random number streams than either could create
+by itself.
 
 ## Installation
 
