@@ -3,13 +3,9 @@
 require_relative '../lib/composite_rng'
 gem              'minitest'
 require          'minitest/autorun'
-require          'minitest_visible'
 
 #Test the monkey patches applied to the Object class.
 class CompositeRngTester < Minitest::Test
-
-  #Track mini-test progress.
-  include MinitestVisible
 
   def test_that_it_checks_parms
     assert_raises { CompositeRng.new(Random.new, Random.new,  -1, 0) }
